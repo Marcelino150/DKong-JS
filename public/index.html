@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Donkey-Kong-JS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            #screen {
+                border: 1px solid #000000;
+                background-color: #000000;
+
+                padding-left: 0;
+                padding-right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                height: 100%;
+            }
+            body {
+                overflow: hidden;
+                background: #120027;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="screen" width = 800 height = 600></canvas>
+        <script type="module">
+            import createPlayer from './player.js'
+            import renderScreen from './render-screen.js'
+            import createKeyboardListener from  './keyboard-listener.js'
+
+            const keyboardListener = createKeyboardListener(document)
+            const screen = document.getElementById('screen')
+            const player = createPlayer(screen);
+
+            keyboardListener.subscribe(player.movePlayer)
+
+            renderScreen(screen, player, requestAnimationFrame)
+
+            //player.movePlayer(command)
+        </script>
+    </body>
+</html>
